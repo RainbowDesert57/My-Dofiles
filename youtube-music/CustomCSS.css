@@ -1,0 +1,47 @@
+/* === Frosted Glass + Purple Theme for th-ch/youtube-music === */
+
+/* Main background blur */
+body {
+  background-color: rgba(20, 10, 30, 0.25) !important;
+  backdrop-filter: blur(25px) saturate(1.2);
+  -webkit-backdrop-filter: blur(25px) saturate(1.2);
+}
+
+/* Player bar styling */
+ytmusic-player-bar {
+  background-color: rgba(40, 20, 60, 0.3) !important;
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Purple accent on play/pause, like, etc. */
+ytmusic-play-button-renderer,
+ytmusic-like-button-renderer,
+ytmusic-seek-bar {
+  --ytmusic-color-primary: #bb86fc !important;
+  --ytmusic-color-secondary: #dba8ff !important;
+  color: #e0b3ff !important;
+}
+
+/* Progress bar purple */
+paper-progress {
+  --paper-progress-active-color: #bb86fc !important;
+  --paper-progress-container-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Hover effects for buttons/cards */
+button:hover,
+ytmusic-shelf-renderer:hover,
+ytmusic-two-row-item-renderer:hover {
+  background-color: rgba(187, 134, 252, 0.1) !important;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar-thumb {
+  background: rgba(187, 134, 252, 0.4);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}

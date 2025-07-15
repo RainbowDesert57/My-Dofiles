@@ -3,38 +3,134 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   -- Theme
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
+  --
+  -- {
+  --   "catppuccin/nvim",
+  --   name = "catppuccin",
+  --   priority = 1000,
+  --   config = function()
+  --       require("catppuccin").setup({
+  --         flavour = "mocha", -- or latte, frappe, macchiato
+  --         transparent_background = true,
+  --       })
+  --   vim.cmd.colorscheme "catppuccin"
+  --   end,
+  -- },
+  --
+  -- {
+  --   "folke/tokyonight.nvim",
+  --   priority = 1000,
+  --   config = function()
+  --       require("tokyonight").setup({
+  --         style = "night",
+  --         transparent = true,  -- ✅ enables transparent background
+  --       })
+  --   vim.cmd("colorscheme tokyonight")
+  --   end,
+  -- },
+  --
+
+{
+  "Rigellute/shades-of-purple.vim",
+    lazy = false,
     priority = 1000,
     config = function()
-      require("catppuccin").setup({
-        flavour = "mocha", -- or latte, frappe, macchiato
-        transparent_background = false,
-      })
-      vim.cmd.colorscheme "catppuccin"
+        vim.cmd("colorscheme shades_of_purple")
+        vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+        vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+        local transparent_groups = {
+          "Normal", "NormalNC", "NormalFloat",
+          "LineNr", "CursorLineNr", "SignColumn",
+          "VertSplit", "StatusLine", "StatusLineNC",
+          "EndOfBuffer", "WinSeparator", "FloatBorder",
+        }
+
+    for _, group in ipairs(transparent_groups) do
+      vim.api.nvim_set_hl(0, group, { bg = "none" })
+    end
     end,
   },
-
   -- File Explorer
   {
     "nvim-tree/nvim-tree.lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      require("nvim-tree").setup()
+      require("nvim-tree").setup({view = {width = 25, side = "right"}})
     end,
   },
 
   -- Statusline (optional, for visual polish)
+  -- {
+  --   "nvim-lualine/lualine.nvim",
+  --   dependencies = { "nvim-tree/nvim-web-devicons" },
+  --   config = function()
+  --     require("lualine").setup {
+  --       options = { theme = "auto" }
+  --     }
+  --   end,
+  -- },
+
   {
-    "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-      require("lualine").setup {
-        options = { theme = "catppuccin" }
-      }
-    end,
-  },
+  "nvim-lualine/lualine.nvim",
+  dependencies = { "nvim-tree/nvim-web-devicons" },
+  config = function()
+    require("lualine").setup({
+      options = {
+        theme = {
+          normal = {
+            a = { fg = "#ffffff", bg = "none", gui = "bold" },
+            b = { fg = "#c678dd", bg = "none" },
+            c = { fg = "#b894f0", bg = "none" },
+          },
+          insert = {
+            a = { fg = "#ffffff", bg = "none", gui = "bold" },
+          },
+          visual = {
+            a = { fg = "#ffffff", bg = "none", gui = "bold" },
+          },
+          replace = {
+            a = { fg = "#ffffff", bg = "none", gui = "bold" },
+          },
+          inactive = {
+            a = { fg = "#888888", bg = "none" },
+            b = { fg = "#888888", bg = "none" },
+            c = { fg = "#888888", bg = "none" },
+          },
+        },
+        component_separators = '',
+        section_separators = '',
+      },
+    })
+  end,
+},
+--   require("lualine").setup({
+--   options = {
+--     theme = {
+--       normal = {
+--         a = { fg = "#ffffff", bg = "none", gui = "bold" },
+--         b = { fg = "#c678dd", bg = "none" },
+--         c = { fg = "#a9a9b3", bg = "none" },
+--       },
+--       insert = {
+--         a = { fg = "#ffffff", bg = "none", gui = "bold" },
+--       },
+--       visual = {
+--         a = { fg = "#ffffff", bg = "none", gui = "bold" },
+--       },
+--       replace = {
+--         a = { fg = "#ffffff", bg = "none", gui = "bold" },
+--       },
+--       inactive = {
+--         a = { fg = "#888888", bg = "none" },
+--         b = { fg = "#888888", bg = "none" },
+--         c = { fg = "#888888", bg = "none" },
+--       },
+--     },
+--     section_separators = '',
+--     component_separators = '',
+--   },
+-- })
+
   {
     'goolord/alpha-nvim',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -52,7 +148,7 @@ require("lazy").setup({
     dashboard.section.buttons.val = {
       dashboard.button("n", "  New file", ":ene <BAR> startinsert<CR>"),
       dashboard.button("d", "  New folder", ":mkdir "),
-      dashboard.button("o", "  Open folder", ":cd ~/"),
+      dashboard.button("o", "  Open folder", function() require('telescope.builtin').find_files({ cwd = vim.fn.expand("~"), hidden = true }) end),
       dashboard.button("f", "  File Tree", ":NvimTreeToggle<CR>"),
       dashboard.button("q", "  Quit", ":qa<CR>"),
     }
@@ -110,10 +206,9 @@ require("lazy").setup({
       dashboard.section.footer,
     }
     -- COLORS
-    vim.cmd[[highlight AlphaHeader guifg=#89b4fa]]
-    vim.cmd[[highlight AlphaButtons guifg=#f38ba8]]
-    vim.cmd[[highlight AlphaFooter guifg=#a6e3a1]]
-    vim.cmd[[highlight AlphaFooter guifg=#a6e3a1]]
+    vim.cmd[[highlight AlphaHeader guifg=#b940ff]]
+    vim.cmd[[highlight AlphaButtons guifg=#894aff]]
+    vim.cmd[[highlight AlphaFooter guifg=#894aff]]
     require("alpha").setup(dashboard.config)
   end
   },
@@ -200,4 +295,66 @@ require("lazy").setup({
     })
   end,
 },
+  -- LSP + Completion
+  { 'neovim/nvim-lspconfig' },          -- LSP support
+  { 'hrsh7th/nvim-cmp' },               -- Completion engine
+  { 'hrsh7th/cmp-nvim-lsp' },           -- LSP source for cmp
+  { 'L3MON4D3/LuaSnip' },               -- Snippet engine
+  { 'saadparwaiz1/cmp_luasnip' },       -- Snippets source
+  { 'rafamadriz/friendly-snippets' },   -- Snippet collection
+  { 'hrsh7th/cmp-buffer' },             -- Buffer completions
+  { 'hrsh7th/cmp-path' },               -- File path completions
+  -- Mason + Mason-LSP
+{
+    'williamboman/mason.nvim',
+    build = ":MasonUpdate",
+    config = function()
+      require("mason").setup()
+    end,
+},
+  {
+    'williamboman/mason-lspconfig.nvim',
+    dependencies = { 'williamboman/mason.nvim' },
+    config = function()
+      require("mason-lspconfig").setup({
+        ensure_installed = { "lua_ls", "ts_ls", "pyright", "clangd", "html", "cssls", "jsonls", "bashls" },
+        automatic_installation = true,
+      })
+    end,
+  },
+  { "mattn/emmet-vim" },
+  {
+  'numToStr/Comment.nvim',
+  config = function()
+    require('Comment').setup()
+  end,
+},
+{
+  'nvim-lua/plenary.nvim',
+},
+
+{
+  'nvim-telescope/telescope.nvim',
+  tag = '0.1.6',
+  dependencies = { 'nvim-lua/plenary.nvim' },
+  config = function()
+    local builtin = require('telescope.builtin')
+    vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+    vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+    vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+    vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+    require('telescope').setup{}
+  end,
+},
+{
+  'nvim-treesitter/nvim-treesitter',
+  build = ':TSUpdate',
+  config = function()
+    require('nvim-treesitter.configs').setup({
+      ensure_installed = { 'c', 'cpp', 'lua', 'vim', 'vimdoc', 'query', 'javascript', 'json', 'css', 'html', 'bash' },
+      auto_install = true,
+      highlight = { enable = true },
+    })
+  end,
+}
 })

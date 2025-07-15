@@ -1,0 +1,2 @@
+[Alarms]
+{5f8ef5f2-cba4-4ef4-9f0c-d1dc40e688d4}={"audioPath":"/usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga","daysOfWeek":0,"enabled":false,"hours":23,"minutes":58,"name":"","ringDuration":5,"snoozeDuration":5,"snoozedLength":0,"uuid":"{5f8ef5f2-cba4-4ef4-9f0c-d1dc40e688d4}"}

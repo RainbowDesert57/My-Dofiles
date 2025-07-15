@@ -1,0 +1,23 @@
+body {
+  background-color: rgba(25, 15, 35, 0.2) !important;
+}
+
+/* Apply blur only to small UI sections */
+ytmusic-player-bar {
+  background-color: rgba(40, 20, 60, 0.3) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+tp-yt-paper-slider .slider-knob-inner,
+#sliderKnob-slider-knob.style-scope.tp-yt-paper-slider,
+tp-yt-paper-progress #primaryProgress,
+#primaryProgress.style-scope.tp-yt-paper-progress {
+  background-color: #bb86fc !important;
+}
+tp-yt-paper-item[aria-label*="Upgrade"],
+ytmusic-guide-entry-renderer[aria-label*="Upgrade"] {
+  display: none !important;
+}
+a[href*="paid_memberships"] {
+  display: none !important;
+}
