@@ -1,0 +1,8 @@
+connect.mdns_devices="[]"
+connect.dial_devices="[{\"address\":\"192.168.1.7\",\"app_state\":\"INSTALLED\",\"created_timestamp\":1753095847,\"device_id\":\"bda92a67-9752-4ba6-9377-2f9501e007c1\",\"dial_location_url\":\"http://192.168.1.7:1213/\",\"display_name\":\"LG TV\",\"last_seen\":1753106592,\"manufacturer\":\"LG Electronics\",\"model_name\":\"55SM8100PTA\",\"product_cap\":\"\",\"public_ip\":\"2401:4900:1c6e:53fe:3325:69c0:26cf:a162\",\"wol\":{\"all_interfaces\":false,\"delay_ms\":250,\"mac\":\"acf1083bb212\",\"port\":9,\"retries\":480}}]"
+audio.play_bitrate_non_metered_migrated=true
+audio.allow_downgrade=false
+audio.equalizer_v2=true
+audio.normalize_v2=false
+audio.play_bitrate_non_metered_enumeration=3
+audio.play_bitrate_enumeration=3
