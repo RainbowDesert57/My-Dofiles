@@ -77,3 +77,5 @@ kconf_updaterc
 pupgui/
 heroic/
 btop/
+emaildefaults
+okularrc
